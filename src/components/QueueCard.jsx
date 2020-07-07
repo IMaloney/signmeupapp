@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 5,
     borderWidth: 1,
-    width: Math.floor(Dimensions.get('window').width * .90),
+    width: Math.floor(useWindowDimensions().width * .90),
     borderColor: '#999897',
     marginBottom: 20,
     borderRadius: 10
