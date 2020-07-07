@@ -1,15 +1,39 @@
 import React from 'react';
-import { Text, View, StyleSheet, Button} from 'react-native';
-// can customize the button more later
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
+import { Entypo } from '@expo/vector-icons';
 
- const NewQueue = () => {
+// can customize the button more later
+// need to pass in the user id, so you can grab which course the person can make
+// a queue for
+const NewQueue = ({ navigation }) => {
     return(
-        <View>
-            <Button 
-                title="Create a new queue"
-            /> 
+        <View style={styles.container}>
+        	<TouchableOpacity
+        		style={styles.button}
+        		onPress={() => navigation.navigate('NewQueue')}
+        	>
+        		<Entypo name="plus" style={styles.text} />
+        		<Text style={{...styles.text, paddingLeft: 5}} >New Queue</Text>
+        	</TouchableOpacity>
         </View> 
     );
- };
+};
 
- export default NewQueue;
+const styles = StyleSheet.create({
+	container: {
+		alignItems: 'center'
+	},
+	button: {
+		flexDirection: 'row',
+		alignItems: 'center'
+
+	},
+	text: {
+		color: '#007bff',
+		fontSize: 24
+	}
+
+});
+
+ export default withNavigation(NewQueue);
