@@ -19,3 +19,6 @@ const navigator = createStackNavigator(
 );
 
 export default createAppContainer(navigator);
+
+// font for signmeup
+// -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;

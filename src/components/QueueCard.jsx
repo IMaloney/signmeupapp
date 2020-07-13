@@ -1,67 +1,66 @@
 import React from 'react';
-import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
-import { MaterialIcons, MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
-
-
-// make the width of the element a percentage of the screen width (might look weird on bigger devices)
-// const width = Math.floor(Dimensions.get('window').width * .90);
-// console.log(typeof width);
-// console.log(width);
+import { View, Text, StyleSheet, Dimensions, ImageBackground } from 'react-native';
+import { MaterialIcons, MaterialCommunityIcons, Entypo, EvilIcons } from '@expo/vector-icons';
+import { getPattern } from '../helpers/pattern';
+import EndsAt from './EndsAt';
 
 // CONSTANTS
+const width = Math.floor(Dimensions.get('window').width * .90);
 
-// touch opacity included in here 
-const QueueCard = ({name, color, tag, location, waiting, course, end}) => {
-	const ticketPlural = (waiting === 1) ? 'ticket' : 'tickets'; 
+// need to manage state here
+// make a helper for determining whether a queue has ended or not
+
+const QueueCard = ({name, tag, location, waiting, course, end}) => {
+	// move this out at some point
+  const ticketPlural = (waiting === 1) ? 'ticket' : 'tickets'; 
   return (
 		<View style={styles.card}>
-			<View style={{...styles.bg, backgroundColor:color}} />
+      <View style={styles.bg} >
+          { getPattern(name, 0) }
+      </View>
 			<View style={styles.cardInfo}>
 				<Text style={styles.header}>{tag} · {name}</Text>
 				<Text style={styles.title} numberOfLines={1}>{course}</Text>
 				<View style={styles.info}>
 					<Entypo name="location-pin" style={styles.img}/>        
-					<Text style={{...styles.subtext, paddingHorizontal: 5}}>{location}</Text>
+					<Text style={styles.subtext}>{location}</Text>
 					<MaterialIcons name='people' style={styles.img}/>
-					<Text style={{...styles.subtext, paddingLeft: 5}}>{waiting} {ticketPlural }</Text>
+					<Text style={styles.subtext}>{waiting} {ticketPlural }</Text>
 				</View>
 			</View>
   			<View style={styles.time}>
           <View style ={{...styles.cardInfo2, ...styles.cardInfo}}>
-            <MaterialCommunityIcons name='cancel' style={styles.img}/>
-            <Text style={{...styles.subtext, paddingLeft: 5}}>Ended at {end}</Text>
-
+            <EndsAt time={end} font={{fontSize:17}} margin={{marginBottom:0}}/>
           </View>
   			</View>
 		</View>
 	);
 };
-// above conditionally render queue ended or not
 
 const styles = StyleSheet.create({
   card: {
-    borderRadius: 5,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
     borderWidth: 1,
-    width: Math.floor(useWindowDimensions().width * .90),
+    width: Math.floor(Dimensions.get('window').width * .90),
     borderColor: '#999897',
     marginBottom: 20,
-    borderRadius: 10
+    // borderRadius: 10
   },
+  // changed border radius to accomodate for svg image not playing well with view
   time: {
     backgroundColor: '#ebebeb',
     height: 30,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
     justifyContent: 'center',
-      borderTopWidth: 1,
+    borderTopWidth: 1,
     borderTopColor: '#999897'
   },
   bg: {
-    // default color
-    backgroundColor: '#713f85',
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
-    height: 20,
+    height: 13,
     borderBottomWidth: 1,
     borderBottomColor: '#999897'
   },
@@ -73,23 +72,26 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   header: {
+    marginTop: 5,
     fontSize: 30,
     fontWeight: 'bold'
   },
   title: {
     fontSize: 25,
-    marginBottom: 15,
+    marginBottom: 10,
     marginTop: 10,
   },
   info: {
     flexDirection: 'row',
+    marginBottom: 10
   },
   img: {
     alignSelf: 'center',
     fontSize: 17
   },
   subtext: {
-    fontSize: 17
+    fontSize: 17,
+    paddingHorizontal: 5
   }
 });
 

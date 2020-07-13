@@ -1,22 +1,30 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Header from './Header';
+import StudentListHeader from './StudentListHeader';
+
 
 const NoSignups = () => {
-    return (
-        <View style={styles.header}>
-            <Header name={'Robert'} />
-            <Text style={styles.text}>No courses are holding hours right now.</Text>
-        </View>
-    );
+	return (
+		<View>
+			<StudentListHeader />
+			<View style={styles.container}>
+				<Text style={styles.text}>No signups to show.</Text>
+			</View>
+		</View>
+	);
 };
 
 const styles = StyleSheet.create({
-    header: {
-        alignItems: 'center',
-    },
-    text: {
-    }
+	container: {
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: '75%'
+	}, 
+	text: {
+		fontSize: 20
+	}
 });
 
-export default NoSignups;
+
+export default NoSignups; 

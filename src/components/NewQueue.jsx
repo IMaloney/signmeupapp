@@ -6,6 +6,11 @@ import { Entypo } from '@expo/vector-icons';
 // can customize the button more later
 // need to pass in the user id, so you can grab which course the person can make
 // a queue for
+
+
+// @react-native-community/picker
+// make ew queue a button in the top?
+
 const NewQueue = ({ navigation }) => {
     return(
         <View style={styles.container}>

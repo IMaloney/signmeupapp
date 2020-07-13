@@ -1,16 +1,19 @@
 import React from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
-import QueueList from '../components/QueueList';
-import Header from '../components/Header';
-import NoSignups from '../components/NoSignups';
+import { SafeAreaView, Text, StyleSheet, StatusBar } from 'react-native';
+import QueueCardList from '../components/QueueCardList';
+import NameHeader from '../components/NameHeader';
+import NoQueues from '../components/NoQueues';
 import NewQueue from '../components/NewQueue';
 
+// add refresh control
+
+// tag connected the course (name made up by ta) 
 const courses = [
+// need to update for long names
     {
         id: '0',
-        name: 'test',
+        name: 'TA Hours',
         tag: 'cs0160',
-        color: '#ff6f7d',
         location: 'fishbowl',
         end: '2:00pm',
         waiting: 80,
@@ -20,7 +23,6 @@ const courses = [
         id: '1',
         name: 'cs32',
         tag: 'cs0320',
-        color: '#ffe047',
         location: 'fishbowl',
         end: '2:00pm',
         waiting: 10,
@@ -30,11 +32,10 @@ const courses = [
         id: '2',
         name: 'cs 33',
         tag: 'cs0330',
-        color: '#728cff',
         location: 'fishbowl',
         end: '2:00pm',
         waiting: 1,
-        course: "Whad up"
+        course: "Intro to Computer Systems"
     }
 
 ];
@@ -46,7 +47,8 @@ const HomeScreen = () => {
     const n = "Ian";
 	return (
 		<SafeAreaView>
-            {courses.length === 0 ? <NoSignups name={n}/> : <QueueList courses={courses} user={n}/>}
+            <StatusBar hidden={false} barStyle='dark-content'/>
+            {courses.length === 0 ? <NoQueues name={n}/> : <QueueCardList courses={courses} user={n}/>}
         </SafeAreaView>
 	);
 };
