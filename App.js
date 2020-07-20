@@ -3,12 +3,14 @@ import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import QueueScreen from './src/screens/QueueScreen';
 import NewQueueScreen from './src/screens/NewQueueScreen';
+import EditQueueScreen from './src/screens/EditQueueScreen';
 
 const navigator = createStackNavigator(
     {
         Home: HomeScreen,
         Queue: QueueScreen,
-        NewQueue: NewQueueScreen
+        NewQueue: NewQueueScreen,
+        EditQueue: EditQueueScreen
     }, 
     {
       initialRouteName: 'Home',
@@ -18,7 +20,15 @@ const navigator = createStackNavigator(
     }
 );
 
-export default createAppContainer(navigator);
+const App = createAppContainer(navigator);
+
+export default () => {
+  return (
+    <Provider>  
+      <App/>
+    </Provider>
+  );
+};
 
 // font for signmeup
 // -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;

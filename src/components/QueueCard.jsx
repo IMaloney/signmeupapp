@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions, ImageBackground } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons, Entypo, EvilIcons } from '@expo/vector-icons';
 import { getPattern } from '../helpers/pattern';
-import EndsAt from './EndsAt';
+import EndsAt from './include/EndsAt';
 
 // CONSTANTS
 const width = Math.floor(Dimensions.get('window').width * .90);
@@ -74,10 +74,11 @@ const styles = StyleSheet.create({
   header: {
     marginTop: 5,
     fontSize: 30,
-    fontWeight: 'bold'
+    fontWeight: '500'
   },
   title: {
     fontSize: 25,
+    fontWeight: '400',
     marginBottom: 10,
     marginTop: 10,
   },

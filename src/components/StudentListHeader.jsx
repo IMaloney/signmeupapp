@@ -21,7 +21,7 @@ const StudentListHeader = () => {
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		borderWidth: 1,
+		borderBottomWidth: 1,
 		borderColor: '#dedede'
 		 // e3e3e3
 	},
@@ -29,18 +29,18 @@ const styles = StyleSheet.create({
 		flex: 1.5
 	},
 	name: {
-		flex: 4.75,
-		borderLeftWidth: 1,
-		borderRightWidth: 1,
+		flex: 5,
+		// borderLeftWidth: 1,
+		// borderRightWidth: 1,
 		borderLeftColor: '#dedede',
 		borderRightColor: '#dedede',
 	},
 	time: {
-		flex: 3.75
+		flex: 3.5
 	},
 	text: {
 		fontWeight: 'bold',
-		fontSize: 20,
+		fontSize: 17,
 		// either 5 or 10
 		marginLeft: 5,
 		marginVertical: 5

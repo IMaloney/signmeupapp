@@ -20,6 +20,12 @@ const QueueScreen = ({ navigation }) => {
 		number: "12",
 		// will need to convert time to make it relative to now
 		time: "10 min. ago"
+	},
+		{
+		name: "John Cena",
+		number: "12",
+		// will need to convert time to make it relative to now
+		time: "15 min. ago"
 	}
 
 	];
