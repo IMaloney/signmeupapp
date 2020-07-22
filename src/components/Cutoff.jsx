@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { CutoffOptions } from './alerts/CutoffAlert';
+import { CutoffOptions } from './alerts/CutoffOptions';
 import * as Haptics from 'expo-haptics';
 
 const Cutoff = () => {
@@ -11,7 +11,7 @@ const Cutoff = () => {
 				onLongPress={ async () => {
 					try {
 						await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-						CutoffAlert();
+						CutoffOptions();
 					} catch (err) {
 						console.log(err);
 					}

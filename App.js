@@ -1,9 +1,11 @@
+import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import QueueScreen from './src/screens/QueueScreen';
 import NewQueueScreen from './src/screens/NewQueueScreen';
 import EditQueueScreen from './src/screens/EditQueueScreen';
+import { Provider } from './src/context/QueueContext';
 
 const navigator = createStackNavigator(
     {

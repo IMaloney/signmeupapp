@@ -9,24 +9,24 @@ import StudentListHeader from './StudentListHeader';
 	// --> name will be cutoff and time will be null
 	// --> cutoff flag passed down
 const StudentList = ({ students }) => {
-	// need to comeup with an id for the student, can't use number since that decrements when people get deleted
-	// time might be the best move since in theory that should be unique (or you could make one up)
-	// might also need to think about decrementing
+	let count = 1;
 	return (
 		<View>			
 			<FlatList
 				ListHeaderComponent={<StudentListHeader />}
 				data={students}
-				keyExtractor={(student) => student.time}
+				keyExtractor={(student) => student.id}
 				renderItem={({item}) => {
 					// render student if its not the cutoff, if its the cut off render cutoff
 					// <Cutoff />
 					return (
 						<View>
 							<Student 
-								number={item.number}
+								number={count++}
 								name={item.name}
 								time={item.time}
+								missing={item.missing}
+								claimed={item.claimed}
 							/>
 						</View>
 					);
