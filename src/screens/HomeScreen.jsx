@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { SafeAreaView, Text, StyleSheet, StatusBar } from 'react-native';
 import QueueCardList from '../components/QueueCardList';
 import NameHeader from '../components/NameHeader';
@@ -17,6 +17,11 @@ const HomeScreen = () => {
     const n = "Ian";
     const { state } = useContext(QueueContext);
 
+    // useEffect(() => {
+
+    // }, 
+    // []);
+    
 	return (
 		<SafeAreaView>
             <StatusBar hidden={false} barStyle='dark-content'/>
