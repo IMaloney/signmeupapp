@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useContext  } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { StudentOptions } from './alerts/StudentOptions';
 import { ClaimedOptions } from './alerts/ClaimedOptions';
+import StudentContext from '../context/StudentContext';
 import * as Haptics from 'expo-haptics'; 
 
 // time is always changing, its the time you signed up relative
 // so like, just now, 1 minute ago, 5 minutes ago, etc.
-const Student = ({ number, name, time, missing, claimed  }) => {
+const Student = ({ number, student }) => {
+	const { claimStudent, markMissing, deleteTicket, endTicket, unclaimStudent } = useContext(StudentContext);
 	let s = styles.containerNormal;
-	if (claimed === 1) {
+	let	funcs = { claimStudent, markMissing, deleteTicket };
+	if (student.claimed === 1) {
 		s = styles.containerClaimed;
-	} else if (missing === 1) {
+		funcs = { endTicket, unclaimStudent };
+	} else if (student.missing === 1) {
 		s = styles.containerMissing;
 	} 
 	return(
@@ -21,7 +25,7 @@ const Student = ({ number, name, time, missing, claimed  }) => {
 					try {
 						// if this errors out you should let it happen anyway
 						await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-						(claimed === 1) ? ClaimedOptions(name) : StudentOptions(name, missing);
+						(student.claimed === 1) ? ClaimedOptions(student, funcs) : StudentOptions(student, funcs);
 					} catch(err) {
 						console.log(err);
 					}
@@ -32,10 +36,10 @@ const Student = ({ number, name, time, missing, claimed  }) => {
 						<Text style={styles.text}>{number}</Text>
 					</View>
 					<View style={styles.name}>
-						<Text style={styles.text}>{name}</Text>
+						<Text style={styles.text}>{student.name}</Text>
 					</View>
 					<View style={styles.time}>
-						<Text style={styles.text}>{time}</Text>
+						<Text style={styles.text}>{student.time}</Text>
 					</View>
 				</View>
 			</TouchableWithoutFeedback>
@@ -55,7 +59,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		borderBottomWidth: 1,
 		borderColor: '#dedede',
-		backgroundColor: '#fcdf77'
+		backgroundColor: '#f7b532'
 	},
 	containerClaimed: {
 		flexDirection: 'row',

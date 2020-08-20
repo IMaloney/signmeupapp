@@ -1,42 +1,40 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import { Context as StudentContext } from '../context/StudentContext';
 
-export const StudentOptions = (name, missing) => {
-	const { claimStudent, markMissing, deleteTicket } = useContext(StudentContext);
-	const missingPhrase = (missing === 1) ? "Unmark Missing" : "Mark Missing";
-		Alert.alert(
-			name,
-			"",
-			[
-				{
-					text: "Claim Ticket",
-					onPress: () => {
-						claimStudent();
-						console.log("claimed ticket");
-					}
-				},
-				{
-					text: missingPhrase,
-					onPress: () => {
-						markMissing();
-						console.log("marked missing");
-					}
-				},
-				{
-					text: "Delete Ticket",
-					onPress: () => {
-						deleteTicket();
-						console.log("ticket deleted");
-					},
-					style: 'destructive'
-				},
-				{
-			        text: "Cancel",
-          			onPress: () => console.log("Cancel Pressed"),
-          			style: "cancel"
+export const StudentOptions = (student, funcs) => {
+	const missingPhrase = (student.missing === 1) ? "Unmark Missing" : "Mark Missing";
+	Alert.alert(
+		student.name,
+		"",
+		[
+			{
+				text: "Claim Ticket",
+				onPress: () => {
+					funcs.claimStudent(student);
+					console.log("claimed ticket");
 				}
-			]
-		);
-	};	
+			},
+			{
+				text: missingPhrase,
+				onPress: () => {
+					funcs.markMissing(student);
+					console.log("marked missing");
+				}
+			},
+			{
+				text: "Delete Ticket",
+				onPress: () => {
+					funcs.deleteTicket(student);
+					console.log("ticket deleted");
+				},
+				style: 'destructive'
+			},
+			{
+		        text: "Cancel",
+      			onPress: () => console.log("Cancel Pressed"),
+      			style: "cancel"
+			}
+		]
+	);
+};	
 
