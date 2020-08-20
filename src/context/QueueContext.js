@@ -18,7 +18,7 @@ const courses = [
         location: 'fishbowl',
         end: '2:00pm',
         waiting: 10,
-        course: "Poop"
+        course: "test"
     },
     {
         id: '2',
